@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(resources/Raleway-Regular.ttf) format(truetype)
+}
+
+/*.raleway-<uniquifier> {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}*/
+
+#title {
+    position: absolute;
+    align-self: center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: xx-large;
+    letter-spacing: 20px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: rgb(13, 109, 45);
+}
+
+.blurContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    align-content: center;
+}
