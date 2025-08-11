@@ -3,6 +3,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const startScreen: HTMLDivElement = document.querySelector("#start-screen")!;
+
+//make start screen disapear when clicked
+startScreen.addEventListener("click", (_ev) => {
+  startScreen.hidden = true;
+});
 
 //set the renderer
 const renderer = new THREE.WebGLRenderer({

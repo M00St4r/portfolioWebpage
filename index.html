@@ -15,8 +15,46 @@
 </head>
 
 <body>
-  <div class="blurContainer">
+  <!-- Start screen -->
+  <div class="blurContainer" id="start-screen">
     <p id="title">Björn Martens</p>
+  </div>
+
+  <div id="contact-window">
+    aaaaa
+  </div>
+
+  <!-- HUD wrapper -->
+  <div class="hud">
+    <header class="hud-header">
+      <div class="brand">
+        <span class="logo"></span>
+        <span>Björn Martens</span>
+      </div>
+
+      <nav class="hud-nav">
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button class="btn" id="modeBtn">:D</button>
+        <!--<a class="btn" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>-->
+      </div>
+    </header>
+
+    <footer class="hud-footer">
+      <div class="footer-left">
+        <span>© <time datetime="2025">2025</time> Björn Martens</span>
+        <span>•</span>
+        <a href="#contact">Hire me</a>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://github.com/M00St4r" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/bj%C3%B6rn-martens-953768296/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://bjoern_martens.artstation.com/" target="_blank" rel="noopener">Artstation</a>
+      </div>
+    </footer>
   </div>
   <canvas id="app"></canvas>
   <script type="module" src="/src/main.ts"></script>
