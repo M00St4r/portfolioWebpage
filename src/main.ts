@@ -8,21 +8,23 @@ const contactWindow: HTMLDivElement = document.querySelector("#contact")!;
 //html buttons
 const contactButton: HTMLButtonElement = document.querySelector("#contact-button")!;
 const closeContactButton: HTMLButtonElement = document.querySelector("#close-contact")!;
+const emailButton: HTMLParagraphElement = document.querySelector("#email")!;
 
 //make start screen disapear when clicked
 startScreen.addEventListener("click", (_ev) => {
   startScreen.style.display = "none";
 });
-
+//contact window
 let contact: boolean = false;
-contactWindow.style.display ="none"
+contactWindow.style.display = "none";
 
 contactButton.addEventListener("click", (_ev) => {
+  console.log("clicked on contact button")
   if (contact) {
     contactWindow.style.display = "none";
     contact = false;
   } else {
-    contactWindow.style.display = "felx";
+    contactWindow.style.display = "flex";
     contact = true;
   }
 });
@@ -32,6 +34,24 @@ closeContactButton.addEventListener("click", (_ev) => {
     contactWindow.style.display = "none";
     contact = false;
   }
+});
+
+//reveal email
+emailButton.addEventListener("click", async (_ev) => {
+  //copy email to clipboard
+  const textToCopy: string = "bjoern.martens@posteo.de";
+
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      //alert("Copied the text: " + textToCopy);
+      console.log("copied email");
+    })
+    .catch(err => {
+      console.error("Failed to copy text: ", err);
+    });
+
+  emailButton.innerText = "copied!";
+  await setInterval(() => emailButton.innerText = "bjoern.martens@posteo.de", 2000);
 });
 
 //#endregion
