@@ -15,24 +15,23 @@ startScreen.addEventListener("click", (_ev) => {
   startScreen.style.display = "none";
 });
 //contact window
-let contact: boolean = false;
+let isContact: boolean = false;
 contactWindow.style.display = "none";
 
 contactButton.addEventListener("click", (_ev) => {
   console.log("clicked on contact button")
-  if (contact) {
+  if (isContact) {
     contactWindow.style.display = "none";
-    contact = false;
   } else {
     contactWindow.style.display = "flex";
-    contact = true;
   }
+  isContact = !isContact;
 });
 
 closeContactButton.addEventListener("click", (_ev) => {
-  if (contact) {
+  if (isContact) {
     contactWindow.style.display = "none";
-    contact = false;
+    isContact = false;
   }
 });
 
@@ -52,6 +51,38 @@ emailButton.addEventListener("click", async (_ev) => {
 
   emailButton.innerText = "copied!";
   await setInterval(() => emailButton.innerText = "bjoern.martens@posteo.de", 2000);
+});
+
+
+//Bio
+const brand: HTMLSpanElement = document.querySelector("#brand")!;
+const name: HTMLSpanElement = document.querySelector("#name")!;
+const bio: HTMLDivElement = document.querySelector("#bio")!;
+const closeBioButton: HTMLButtonElement = document.querySelector("#close-bio")!;
+
+let isBio: boolean = false;
+bio.style.display = "none";
+
+brand.addEventListener("mouseenter", (_ev) => {
+  name.innerText = "Get to know me!";
+});
+
+brand.addEventListener("mouseleave", (_ev) => {
+  name.innerText = "Björn Martens";
+});
+
+brand.addEventListener("click", (_ev) => {
+  bio.style.display = "flex";
+  isBio = true;
+});
+
+closeBioButton.addEventListener("click", (_ev) =>{
+  if(isBio){
+    bio.style.display = "none";
+  }else{
+    bio.style.display = "flex";
+  }
+  isBio = !isBio;
 });
 
 //#endregion

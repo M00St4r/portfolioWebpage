@@ -10,7 +10,8 @@
 :root {
     --hud-bg: rgba(255, 255, 255, 0.03);
     --hud-border: rgba(255, 255, 255, 0.04);
-    --accent: #7ce7c5;
+    --accent1: #7ce7c5;
+    --accent2: rgb(117, 25, 192);
     --text: #e9eef6;
     --gap: 12px;
     --height-header: 64px;
@@ -71,7 +72,7 @@ html {
 
 /* Popup box */
 .popup {
-    background: rgb(117, 25, 192);
+    background: var(--accent2);
     color: var(--text);
     padding: 20px;
     border-radius: 10px;
@@ -137,7 +138,7 @@ footer.hud-footer {
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--accent), #5b9bd5);
+    background: linear-gradient(135deg, var(--accent1), #5b9bd5);
 }
 
 nav.hud-nav {
@@ -174,6 +175,13 @@ nav.hud-nav a:hover {
     color: var(--text);
     cursor: pointer;
     font-size: 13px;
+    font-weight: 600;
+    background-color: var(--accent2);
+}
+
+.btn:hover {
+    color: black;
+    background-color: var(--accent1);
 }
 
 .footer-left,
