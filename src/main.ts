@@ -1,14 +1,43 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//#region HTML Stuff
+//html "windows"
 const startScreen: HTMLDivElement = document.querySelector("#start-screen")!;
+const contactWindow: HTMLDivElement = document.querySelector("#contact")!;
+//html buttons
+const contactButton: HTMLButtonElement = document.querySelector("#contact-button")!;
+const closeContactButton: HTMLButtonElement = document.querySelector("#close-contact")!;
 
 //make start screen disapear when clicked
 startScreen.addEventListener("click", (_ev) => {
-  startScreen.hidden = true;
+  startScreen.style.display = "none";
 });
+
+let contact: boolean = false;
+contactWindow.style.display ="none"
+
+contactButton.addEventListener("click", (_ev) => {
+  if (contact) {
+    contactWindow.style.display = "none";
+    contact = false;
+  } else {
+    contactWindow.style.display = "felx";
+    contact = true;
+  }
+});
+
+closeContactButton.addEventListener("click", (_ev) => {
+  if (contact) {
+    contactWindow.style.display = "none";
+    contact = false;
+  }
+});
+
+//#endregion
+//#region 3D Stuff
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 //set the renderer
 const renderer = new THREE.WebGLRenderer({
