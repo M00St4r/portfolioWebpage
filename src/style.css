@@ -30,6 +30,7 @@ html {
     font-family: "Raleway", sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* completely removes scrollbars */
 }
 
 #title {
@@ -74,11 +75,47 @@ html {
 .popup {
     background: var(--accent2);
     color: var(--text);
-    padding: 20px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
     border-radius: 10px;
-    width: 300px;
+    /*width: 90%;               default: takes most of screen on small devices */
+    max-width: 50vw;        /* never grows beyond this width */
+    max-height: 50vh;        /* never grows beyond 80% of viewport height */
+    overflow-y: auto;        /* adds scroll inside if content is too tall */
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Width of the entire scrollbar */
+::-webkit-scrollbar {
+    width: 8px;       /* vertical scrollbar */
+    height: 8px;      /* horizontal scrollbar */
+}
+
+/* Track (background area) */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.00);
+    border-radius: 4px;
+}
+
+/* Thumb (scroll handle) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent1);
+    border-radius: 4px;
+    border: 2px solid transparent; /* space around thumb */
+}
+
+/* Thumb hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent2);
+}
+
+/* Firefox Narrow scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent1) rgba(255, 255, 255, 0.05);
 }
 
 /* HUD starts here*/
