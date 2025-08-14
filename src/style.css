@@ -88,6 +88,7 @@ html {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Scroll bar */
 /* Width of the entire scrollbar */
 ::-webkit-scrollbar {
     width: 8px;       /* vertical scrollbar */
@@ -117,6 +118,7 @@ html {
     scrollbar-width: thin;
     scrollbar-color: var(--accent1) rgba(255, 255, 255, 0.05);
 }
+/* Scroll bar End*/
 
 /* HUD starts here*/
 .hud {

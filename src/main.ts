@@ -85,6 +85,31 @@ closeBioButton.addEventListener("click", (_ev) =>{
   isBio = !isBio;
 });
 
+//projects
+const projects: HTMLDivElement = document.querySelector("#projects")!;
+projects.style.display = "none";
+
+//projects.style.display = "flex";
+
+let isProjectHover: boolean = false;
+let isProject: boolean = false;
+
+projects.addEventListener("mouseenter", (_ev)=>{
+  isProjectHover = true;
+});
+
+projects.addEventListener("mouseleave", (_ev)=>{
+  isProjectHover = false;
+})
+
+document.addEventListener("click", (_ev) =>{
+  if(isProject && !isProjectHover){
+    //hide project
+    isProject = false;
+    isProjectHover = false;
+  }
+});
+
 //#endregion
 //#region 3D Stuff
 const scene = new THREE.Scene();
