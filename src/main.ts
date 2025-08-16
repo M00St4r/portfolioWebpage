@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+
+
 //#region HTML Stuff
 //html "windows"
 const startScreen: HTMLDivElement = document.querySelector("#start-screen")!;
@@ -124,7 +126,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 //load models
 const gltfLoader = new GLTFLoader();
 
-gltfLoader.load('/resources/Monkey.glb', function (gltf) {
+let island: THREE.Group<THREE.Object3DEventMap>;
+gltfLoader.load('/resources/Island.glb', function (gltf) {
   // gltf.scene.traverse(function (child) {
   //   if ((child as THREE.Mesh).isMesh) {
   //     const m = child as THREE.Mesh
@@ -134,10 +137,13 @@ gltfLoader.load('/resources/Monkey.glb', function (gltf) {
   //     scene.add(m);
   //   }
   // });
+  island = gltf.scene;
   scene.add(gltf.scene);
 }, undefined, function (error) {
   console.error(error);
 });
+
+//scene.add(island);
 
 //add light
 //hemisphere light
@@ -164,6 +170,7 @@ scene.add(dlLight.target);
 camera.position.z = 5;
 
 function animate() {
+  scene.getObjectById
   renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
