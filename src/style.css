@@ -52,6 +52,7 @@ html {
     width: 100%;
     backdrop-filter: blur(var(--bg-blur));
     align-content: center;
+    pointer-events: auto;
 }
 
 /*contact window*/
