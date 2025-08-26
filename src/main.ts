@@ -197,6 +197,8 @@ camera.translateZ(-5);
 let mousePosX: number = 0;
 let mousePosY: number = 0;
 let isMouseDown: boolean = false;
+let snapping = false;
+let targetTheta = 0;
 
 let canvas: HTMLCanvasElement = document.getElementById("app") as HTMLCanvasElement;
 
@@ -213,13 +215,24 @@ let theta = 0;    // left/right angle
 let phi = Math.PI / 2; // up/down angle
 
 function updateCamera() {
+  if (snapping && !isMouseDown) {
+    const snapSpeed = 0.1; // adjust (0.05 = slower, 0.2 = faster)
+    theta = THREE.MathUtils.lerp(theta, targetTheta, snapSpeed);
+
+    // if close enough, stop snapping
+    if (Math.abs(theta - targetTheta) < 0.001) {
+      theta = targetTheta;
+      snapping = false;
+    }
+  }
+
   // Convert spherical to Cartesian
   const x = radius * Math.sin(phi) * Math.cos(theta);
   const y = radius * Math.cos(phi);
   const z = radius * Math.sin(phi) * Math.sin(theta);
 
   camera.position.set(x, y, z);
-  camera.lookAt(0, -0.5, 0); // always look at scene center
+  camera.lookAt(0, -0.5, 0);
 }
 
 // Mouse handling
@@ -241,6 +254,12 @@ canvas.addEventListener("mousemove", (_ev) => {
 
 canvas.addEventListener("mouseup", (_ev) => {
   isMouseDown = false;
+
+  // snap points (every 45° = PI/4 rad)
+  const step = Math.PI / 4;
+  targetTheta = Math.round(theta / step) * step;
+
+  snapping = true;
 });
 
 // ---- Touch Controls ----
