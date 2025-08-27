@@ -1,3 +1,4 @@
+
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
@@ -90,6 +91,7 @@ closeBioButton.addEventListener("click", (_ev) => {
 //projects
 const projects: HTMLDivElement = document.querySelector("#projects")!;
 projects.style.display = "none";
+let projectSelector: number = 0;
 
 //projects.style.display = "flex";
 
@@ -117,7 +119,6 @@ document.addEventListener("click", (_ev) => {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.rotateX(-15 * Math.PI / 180);
-let cameraOffset: THREE.Vector3 = new THREE.Vector3(0, 0, -5);
 
 //set the renderer
 const renderer = new THREE.WebGLRenderer({
@@ -176,20 +177,12 @@ const hlLight = new THREE.HemisphereLight(skyColor, groundColor, hlIntensity);
 scene.add(hlLight);
 //directional Light
 const dlColor = 0xFFFFFF;
-const dlintensity = 1;
+const dlintensity = 5;
 const dlLight = new THREE.DirectionalLight(dlColor, dlintensity);
 dlLight.position.set(0, 10, 0);
 dlLight.target.position.set(-5, 0, 0);
 scene.add(dlLight);
 scene.add(dlLight.target);
-
-//add meshes
-// const geometry = new THREE.BoxGeometry(1, 1, 1);
-// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-// const cube = new THREE.Mesh(geometry, material);
-// scene.add(cube);
-let xRot: number = 0;
-let yRot: number = 0;
 
 camera.translateZ(-5);
 
@@ -255,12 +248,25 @@ canvas.addEventListener("mousemove", (_ev) => {
 canvas.addEventListener("mouseup", (_ev) => {
   isMouseDown = false;
 
-  // snap points (every 45° = PI/4 rad)
+  // snap points every 45°
   const step = Math.PI / 4;
   targetTheta = Math.round(theta / step) * step;
 
+  // update the project selector to show the correct project
+  projectSelector = angleToSelector(targetTheta, step);
+
   snapping = true;
 });
+
+function angleToSelector(targetTheta: number, step: number): number {
+
+  let angle = ((targetTheta % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+  let selector = Math.round(angle / step) % (2 * Math.PI / step);
+
+  console.log("selector: ", selector)
+  return selector;
+}
 
 // ---- Touch Controls ----
 let touchStartX = 0;
@@ -278,6 +284,17 @@ canvas.addEventListener("touchmove", (ev) => {
     theta += xDiff * Math.PI; // same as mouse
     touchStartX = currentX;
   }
+});
+
+canvas.addEventListener("touchend", () => {
+  // snap points every 45°
+  const step = Math.PI / 4;
+  targetTheta = Math.round(theta / step) * step;
+
+  // update the project selector to show the correct project
+  projectSelector = angleToSelector(targetTheta, step);
+
+  snapping = true;
 });
 //#endregion
 
