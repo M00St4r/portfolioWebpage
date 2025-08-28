@@ -15,9 +15,23 @@
 </head>
 
 <body>
-  <!-- Start screen -->
-  <div class="blurContainer" id="start-screen">
-    <p id="title">Björn Martens</p>
+  <div class="overlay" id="projects-preview">
+    <div class="popup" id="project-preview">
+      <h2>Project No.1</h2>
+      <p>this is project number 1</p>
+      <p>TEST TEST TEST TEST</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="projects">
+    <div class="popup" id="projects-content">
+      <h2>3D Frost Effect</h2>
+      <img src="media/bjorn-martens-before-after.jpg" alt="before and after image" style="width: 100%; height: auto;">
+      <video controls autoplay muted style="width: 100%; height: auto; padding-top: 10px; padding-bottom: 10px;">
+        <source src="media/final-animation.mp4" type="video/mp4">
+      </video>
+      <p>The shown Frost Effect is a Geometry Node based Effect, which covers Objects with a ice crystal like pattern. The goal was to create something realistic. The animation was done in a short timeframe thats why it lacks some details and refinement. All assets were created from Images I took on Walk.</p>
+    </div>
   </div>
 
   <div class="overlay" id="contact">
@@ -70,12 +84,9 @@
     </div>
   </div>
 
-  <div class="overlay" id="projects">
-    <div class="popup">
-      <h2>Project No.1</h2>
-      <p>this is project number 1</p>
-      <p>TEST TEST TEST TEST</p>
-    </div>
+  <!-- Start screen -->
+  <div class="blurContainer" id="start-screen">
+    <p id="title">Björn Martens</p>
   </div>
 
   <!-- HUD wrapper -->

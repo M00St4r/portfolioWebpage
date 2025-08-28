@@ -89,6 +89,34 @@ html {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+#projects-content{
+    pointer-events: auto;
+}
+#projects-content h2{
+    padding-bottom: 20px;
+}
+#projects-content p{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+}
+#projects-preview{
+    display: flex;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0);
+    height: 85%;
+    pointer-events: none;
+}
+
+#project-preview{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-radius: 10px;
+    pointer-events: auto;
+}
+
 /* Scroll bar */
 /* Width of the entire scrollbar */
 ::-webkit-scrollbar {

@@ -90,29 +90,49 @@ closeBioButton.addEventListener("click", (_ev) => {
 
 //projects
 const projects: HTMLDivElement = document.querySelector("#projects")!;
+const projectsDisplay: HTMLDivElement = document.querySelector("#projects-content")!;
+const projectPreview: HTMLDivElement = document.querySelector("#project-preview")!;
 projects.style.display = "none";
 let projectSelector: number = 0;
 
-//projects.style.display = "flex";
+// Project Preview Window
+projectPreview.addEventListener("click", (_ev) => {
+  projects.style.display = "flex";
+  isProject = true;
+  console.log("clicked on project preview")
+});
 
+// Project Display Window
 let isProjectHover: boolean = false;
 let isProject: boolean = false;
 
-projects.addEventListener("mouseenter", (_ev) => {
+projectsDisplay.addEventListener("mouseenter", (_ev) => {
   isProjectHover = true;
+  console.log("project enter");
 });
 
-projects.addEventListener("mouseleave", (_ev) => {
+projectsDisplay.addEventListener("mouseleave", (_ev) => {
   isProjectHover = false;
+  console.log("project leave");
 })
 
-document.addEventListener("click", (_ev) => {
+projects.addEventListener("click", (_ev) => {
   if (isProject && !isProjectHover) {
     //hide project
     isProject = false;
-    isProjectHover = false;
+    projects.style.display = "none";
   }
 });
+
+function frac(x: number) { return x - Math.floor(x); }
+
+function updateProjectPreview(theta: number) {
+  const t = frac(theta * 4 / Math.PI);
+  const projectWindowSize = 2 * Math.abs(t - 0.5); // triangle wave from 0 to 1
+  projectPreview.style.transform = `scale(${projectWindowSize})`;
+  projectPreview.style.transformOrigin =  "center 110%";
+  projectPreview.style.opacity = projectWindowSize.toString();
+}
 
 //#endregion
 //#region 3D Stuff
@@ -218,6 +238,8 @@ function updateCamera() {
       snapping = false;
     }
   }
+
+  updateProjectPreview(theta);
 
   // Convert spherical to Cartesian
   const x = radius * Math.sin(phi) * Math.cos(theta);
