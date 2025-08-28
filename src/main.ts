@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+import { previews } from './projects';
 
 
 //#region HTML Stuff
@@ -130,8 +131,9 @@ function updateProjectPreview(theta: number) {
   const t = frac(theta * 4 / Math.PI);
   const projectWindowSize = 2 * Math.abs(t - 0.5); // triangle wave from 0 to 1
   projectPreview.style.transform = `scale(${projectWindowSize})`;
-  projectPreview.style.transformOrigin =  "center 110%";
+  projectPreview.style.transformOrigin = "center 110%";
   projectPreview.style.opacity = projectWindowSize.toString();
+  projectPreview.innerHTML = previews[projectSelector]
 }
 
 //#endregion
@@ -237,6 +239,13 @@ function updateCamera() {
       theta = targetTheta;
       snapping = false;
     }
+
+    // snap points every 45°
+    const step = Math.PI / 4;
+    targetTheta = Math.round(theta / step) * step;
+
+    // update the project selector to show the correct project
+    projectSelector = angleToSelector(targetTheta, step);
   }
 
   updateProjectPreview(theta);
@@ -269,13 +278,6 @@ canvas.addEventListener("mousemove", (_ev) => {
 
 canvas.addEventListener("mouseup", (_ev) => {
   isMouseDown = false;
-
-  // snap points every 45°
-  const step = Math.PI / 4;
-  targetTheta = Math.round(theta / step) * step;
-
-  // update the project selector to show the correct project
-  projectSelector = angleToSelector(targetTheta, step);
 
   snapping = true;
 });

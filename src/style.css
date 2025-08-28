@@ -30,7 +30,8 @@ html {
     font-family: "Raleway", sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* completely removes scrollbars */
+    overflow: hidden;
+    /* completely removes scrollbars */
 }
 
 #title {
@@ -44,6 +45,24 @@ html {
     height: auto;
     text-align: center;
     color: var(--text);
+}
+
+#hint {
+    font-family: "Raleway", sans-serif;
+    font-weight: 200;
+    font-size: medium;
+
+    position: absolute;
+    padding-top: 25%;
+    align-self: center;
+    color: var(--text);
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+#hint p{
+    padding: 1%;
 }
 
 .blurContainer {
@@ -82,46 +101,62 @@ html {
     padding-right: 10vw;
     border-radius: 10px;
     /*width: 90%;               default: takes most of screen on small devices */
-    max-width: 50vw;        /* never grows beyond this width */
-    max-height: 50vh;        /* never grows beyond 80% of viewport height */
-    overflow-y: auto;        /* adds scroll inside if content is too tall */
+    max-width: 50vw;
+    /* never grows beyond this width */
+    max-height: 50vh;
+    /* never grows beyond 80% of viewport height */
+    overflow-y: auto;
+    /* adds scroll inside if content is too tall */
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-#projects-content{
+#projects-content {
     pointer-events: auto;
+    padding: 5vw;
 }
-#projects-content h2{
+
+#projects-content h2 {
     padding-bottom: 20px;
-}
-#projects-content p{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: left;
-}
-#projects-preview{
-    display: flex;
-    background: rgba(0,0,0,0);
-    backdrop-filter: blur(0);
-    height: 85%;
     pointer-events: none;
 }
 
-#project-preview{
+#projects-content p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    pointer-events: none;
+}
+
+#projects-content img {
+    pointer-events: none;
+}
+
+#projects-preview {
+    display: flex;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
+    height: 75%;
+    pointer-events: none;
+}
+
+#project-preview {
     padding-top: 2vh;
     padding-bottom: 2vh;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 2vh;
+    padding-right: 2vh;
     border-radius: 10px;
+    max-width: 15%;
     pointer-events: auto;
 }
 
 /* Scroll bar */
 /* Width of the entire scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;       /* vertical scrollbar */
-    height: 8px;      /* horizontal scrollbar */
+    width: 8px;
+    /* vertical scrollbar */
+    height: 8px;
+    /* horizontal scrollbar */
 }
 
 /* Track (background area) */
@@ -134,7 +169,8 @@ html {
 ::-webkit-scrollbar-thumb {
     background-color: var(--accent1);
     border-radius: 4px;
-    border: 2px solid transparent; /* space around thumb */
+    border: 2px solid transparent;
+    /* space around thumb */
 }
 
 /* Thumb hover */
@@ -147,6 +183,7 @@ html {
     scrollbar-width: thin;
     scrollbar-color: var(--accent1) rgba(255, 255, 255, 0.05);
 }
+
 /* Scroll bar End*/
 
 /* HUD starts here*/

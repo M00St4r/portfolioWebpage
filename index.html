@@ -31,6 +31,8 @@
         <source src="media/final-animation.mp4" type="video/mp4">
       </video>
       <p>The shown Frost Effect is a Geometry Node based Effect, which covers Objects with a ice crystal like pattern. The goal was to create something realistic. The animation was done in a short timeframe thats why it lacks some details and refinement. All assets were created from Images I took on Walk.</p>
+      <img src="media/bjorn-martens-freezing-effect-nodes.jpg" alt="geometry nodes setup" style="width: 100%; height: auto;">
+      <p style="padding: 0; text-align: center;">node setup</p>
     </div>
   </div>
 
@@ -49,6 +51,7 @@
       <button class="btn" id="close-bio">Close</button>
     </div>
     <div class="popup">
+      <img id="avatar" src="media/avatar_trim.jpg" alt="avatar" style="width: 50%; height: auto; border-radius: 25%;">
       <h2>Björn Martens</h2>
       <p>this is my Bio</p>
       <p>TEST TEST TEST TEST</p>
@@ -87,13 +90,17 @@
   <!-- Start screen -->
   <div class="blurContainer" id="start-screen">
     <p id="title">Björn Martens</p>
+    <div id="hint">
+      <p>click to enter</p>
+      <p>swipe left or right to see more</p>
+    </div>
   </div>
 
   <!-- HUD wrapper -->
   <div class="hud">
     <header class="hud-header">
       <div class="brand" id="brand">
-        <span class="logo"></span>
+        <img class="logo" src="media/avatar_trim.jpg" alt="avatar">
         <span id="name">Björn Martens</span>
       </div>
 
