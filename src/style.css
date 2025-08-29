@@ -150,6 +150,21 @@ html {
     pointer-events: auto;
 }
 
+#bio-context{
+    padding: 2vh;
+    max-height: 70vh;
+}
+
+#bio-context p{
+    padding-top: 10px;
+    text-align: left;
+}
+
+#bio-context h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 /* Scroll bar */
 /* Width of the entire scrollbar */
 ::-webkit-scrollbar {

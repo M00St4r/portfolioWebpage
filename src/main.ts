@@ -134,6 +134,12 @@ function updateProjectPreview(theta: number) {
   projectPreview.style.transformOrigin = "center 110%";
   projectPreview.style.opacity = projectWindowSize.toString();
   projectPreview.innerHTML = previews[projectSelector]
+  
+  if(projectWindowSize == 1){
+    projectPreview.style.pointerEvents = "all";
+  }else{
+    projectPreview.style.pointerEvents = "none";
+  }
 }
 
 //#endregion
