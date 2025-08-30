@@ -2,7 +2,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
-import { previews } from './projects';
+import { previewSnippets } from './projects.ts';
+import { projectSnippets } from './projects.ts';
 
 
 //#region HTML Stuff
@@ -133,7 +134,8 @@ function updateProjectPreview(theta: number) {
   projectPreview.style.transform = `scale(${projectWindowSize})`;
   projectPreview.style.transformOrigin = "center 110%";
   projectPreview.style.opacity = projectWindowSize.toString();
-  projectPreview.innerHTML = previews[projectSelector]
+  projectPreview.innerHTML = previewSnippets[projectSelector];
+  projectsDisplay.innerHTML = projectSnippets[projectSelector];
   
   if(projectWindowSize == 1){
     projectPreview.style.pointerEvents = "all";
