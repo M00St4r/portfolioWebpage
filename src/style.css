@@ -61,7 +61,7 @@ html {
     text-align: center;
 }
 
-#hint p{
+#hint p {
     padding: 1%;
 }
 
@@ -89,6 +89,11 @@ html {
     /* Center horizontally */
     align-items: center;
     /* Center vertically */
+    flex-direction: column-reverse;
+}
+
+.overlay .btn {
+    margin: 10px;
 }
 
 /* Popup box */
@@ -150,17 +155,17 @@ html {
     pointer-events: auto;
 }
 
-#bio-context{
+#bio-context {
     padding: 2vh;
     max-height: 70vh;
 }
 
-#bio-context p{
+#bio-context p {
     padding-top: 10px;
     text-align: left;
 }
 
-#bio-context h2{
+#bio-context h2 {
     padding-top: 10px;
     padding-bottom: 10px;
 }
