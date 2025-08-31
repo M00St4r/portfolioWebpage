@@ -2,8 +2,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
-import { previewSnippets } from './projects.ts';
-import { projectSnippets } from './projects.ts';
+//import { previewSnippets } from './projects.ts';
+//import { projectSnippets } from './projects.ts';
 
 
 //#region HTML Stuff
@@ -24,7 +24,7 @@ let isContact: boolean = false;
 contactWindow.style.display = "none";
 
 contactButton.addEventListener("click", (_ev) => {
-  console.log("clicked on contact button")
+  //console.log("clicked on contact button")
   if (isContact) {
     contactWindow.style.display = "none";
   } else {
@@ -97,11 +97,18 @@ const projectPreview: HTMLDivElement = document.querySelector("#project-preview"
 projects.style.display = "none";
 let projectSelector: number = 0;
 
+// the current project and the last
+let display: HTMLDivElement = document.createElement("div");
+let last: HTMLDivElement = document.createElement("div");
+// current preview and last preview
+let displayPrev: HTMLDivElement = document.createElement("div");
+let lastPrev: HTMLDivElement = document.createElement("div");
+
 // Project Preview Window
 projectPreview.addEventListener("click", (_ev) => {
   projects.style.display = "flex";
   isProject = true;
-  console.log("clicked on project preview")
+  //console.log("clicked on project preview")
 });
 
 // Project Display Window
@@ -110,12 +117,12 @@ let isProject: boolean = false;
 
 projectsDisplay.addEventListener("mouseenter", (_ev) => {
   isProjectHover = true;
-  console.log("project enter");
+  //console.log("project enter");
 });
 
 projectsDisplay.addEventListener("mouseleave", (_ev) => {
   isProjectHover = false;
-  console.log("project leave");
+  //console.log("project leave");
 })
 
 projects.addEventListener("click", (_ev) => {
@@ -134,12 +141,22 @@ function updateProjectPreview(theta: number) {
   projectPreview.style.transform = `scale(${projectWindowSize})`;
   projectPreview.style.transformOrigin = "center 110%";
   projectPreview.style.opacity = projectWindowSize.toString();
-  projectPreview.innerHTML = previewSnippets[projectSelector];
-  projectsDisplay.innerHTML = projectSnippets[projectSelector];
-  
-  if(projectWindowSize == 1){
+
+  displayPrev = projectPreview.children[projectSelector] as HTMLDivElement;
+  lastPrev.style.display = "none";
+  displayPrev.style.display = "block";
+  lastPrev = displayPrev;
+
+  display = projectsDisplay.children[projectSelector] as HTMLDivElement;
+  last.style.display = "none";
+  display.style.display = "block";
+  last = display;
+  //projectPreview.innerHTML = previewSnippets[projectSelector];
+  //projectsDisplay.innerHTML = projectSnippets[projectSelector];
+
+  if (projectWindowSize == 1) {
     projectPreview.style.pointerEvents = "all";
-  }else{
+  } else {
     projectPreview.style.pointerEvents = "none";
   }
 }
@@ -229,7 +246,7 @@ canvas.addEventListener("mousedown", (_ev) => {
   isMouseDown = true;
   mousePosX = _ev.clientX / canvas.clientWidth;
   mousePosY = _ev.clientY / canvas.clientHeight;
-  console.log("mouse Down on canvas");
+  //console.log("mouse Down on canvas");
 });
 
 // Camera orbit parameters
@@ -296,7 +313,7 @@ function angleToSelector(targetTheta: number, step: number): number {
 
   let selector = Math.round(angle / step) % (2 * Math.PI / step);
 
-  console.log("selector: ", selector)
+  //console.log("selector: ", selector)
   return selector;
 }
 
@@ -333,7 +350,7 @@ canvas.addEventListener("touchend", () => {
 //#region Environment Texture
 let exrBackground: THREE.Texture;
 
-new EXRLoader().load('/resources/OverTheClouds.exr', function (texture) {
+new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
 
   texture.mapping = THREE.EquirectangularReflectionMapping;
 
