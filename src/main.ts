@@ -348,23 +348,23 @@ canvas.addEventListener("touchend", () => {
 //#endregion
 
 //#region Environment Texture
-let exrBackground: THREE.Texture;
+// let exrBackground: THREE.Texture;
 
-new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
+// new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
 
-  texture.mapping = THREE.EquirectangularReflectionMapping;
+//   texture.mapping = THREE.EquirectangularReflectionMapping;
 
-  //exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
-  exrBackground = texture;
+//   //exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
+//   exrBackground = texture;
 
-});
+// });
 
 //
 
 function animate() {
   //scene.getObjectById
   updateCamera();
-  scene.background = exrBackground;
+  //scene.background = exrBackground;
   renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
