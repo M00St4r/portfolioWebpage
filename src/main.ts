@@ -179,7 +179,7 @@ const gltfLoader = new GLTFLoader();
 let isleOffset: THREE.Vector3 = new THREE.Vector3(0, -1, 0);
 
 //let island: THREE.Group<THREE.Object3DEventMap>;
-gltfLoader.load('/resources/Island.glb', function (gltf) {
+gltfLoader.load('/assets/Island.glb', function (gltf) {
   // gltf.scene.traverse(function (child) {
   //   if ((child as THREE.Mesh).isMesh) {
   //     const m = child as THREE.Mesh
@@ -196,7 +196,7 @@ gltfLoader.load('/resources/Island.glb', function (gltf) {
   console.error(error);
 });
 
-gltfLoader.load('/resources/ButtonRing.glb', function (gltf) {
+gltfLoader.load('/assets/ButtonRing.glb', function (gltf) {
   // gltf.scene.traverse(function (child) {
   //   if ((child as THREE.Mesh).isMesh) {
   //     const m = child as THREE.Mesh
@@ -357,7 +357,7 @@ canvas.addEventListener("touchend", () => {
 //#region Environment Texture
 let exrBackground: THREE.Texture;
 
-new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
+new EXRLoader().load('/assets/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
 
   texture.mapping = THREE.EquirectangularReflectionMapping;
 
