@@ -1,0 +1,320 @@
+* {
+    margin: 0px;
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(resources/Raleway-Regular.ttf) format(truetype)
+}
+
+:root {
+    --hud-bg: rgba(255, 255, 255, 0.03);
+    --hud-border: rgba(255, 255, 255, 0.04);
+    --accent1: #7ce7c5;
+    --accent2: rgb(117, 25, 192);
+    --text: #e9eef6;
+    --gap: 12px;
+    --height-header: 64px;
+    --height-footer: 72px;
+    --bg-blur: 10px;
+}
+
+/*.raleway-<uniquifier> {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}*/
+
+html {
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* completely removes scrollbars */
+}
+
+#title {
+    position: absolute;
+    align-self: center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: xx-large;
+    letter-spacing: 20px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: var(--text);
+}
+
+#hint {
+    font-family: "Raleway", sans-serif;
+    font-weight: 200;
+    font-size: medium;
+
+    position: absolute;
+    padding-top: 25%;
+    align-self: center;
+    color: var(--text);
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+#hint p {
+    padding: 1%;
+}
+
+.blurContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(var(--bg-blur));
+    align-content: center;
+    pointer-events: auto;
+}
+
+/*contact window*/
+/* Background overlay */
+.overlay {
+    /*display:none Hidden by default, flex shown */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--hud-bg);
+    backdrop-filter: blur(var(--bg-blur));
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    flex-direction: column-reverse;
+}
+
+.overlay .btn {
+    margin: 10px;
+}
+
+/* Popup box */
+.popup {
+    background: var(--accent2);
+    color: var(--text);
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    border-radius: 10px;
+    /*width: 90%;               default: takes most of screen on small devices */
+    max-width: 50vw;
+    /* never grows beyond this width */
+    max-height: 50vh;
+    /* never grows beyond 80% of viewport height */
+    overflow-y: auto;
+    /* adds scroll inside if content is too tall */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#projects-content {
+    pointer-events: auto;
+    padding: 5vw;
+}
+
+#projects-content h2 {
+    padding-bottom: 20px;
+    pointer-events: none;
+}
+
+#projects-content p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    pointer-events: none;
+}
+
+#projects-content img {
+    pointer-events: none;
+}
+
+#projects-preview {
+    display: flex;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
+    height: 75%;
+    pointer-events: none;
+}
+
+#project-preview {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    border-radius: 10px;
+    max-width: 15%;
+    pointer-events: auto;
+}
+
+#bio-context {
+    padding: 2vh;
+    max-height: 70vh;
+}
+
+#bio-context p {
+    padding-top: 10px;
+    text-align: left;
+}
+
+#bio-context h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Scroll bar */
+/* Width of the entire scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    /* vertical scrollbar */
+    height: 8px;
+    /* horizontal scrollbar */
+}
+
+/* Track (background area) */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.00);
+    border-radius: 4px;
+}
+
+/* Thumb (scroll handle) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent1);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    /* space around thumb */
+}
+
+/* Thumb hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent2);
+}
+
+/* Firefox Narrow scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent1) rgba(255, 255, 255, 0.05);
+}
+
+/* Scroll bar End*/
+
+/* HUD starts here*/
+.hud {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    /* let clicks through unless on controls */
+    z-index: 50;
+}
+
+header.hud-header,
+footer.hud-footer {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap);
+    padding: 0 calc(var(--gap) * 1.5);
+    box-sizing: border-box;
+    width: 100%;
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    background: var(--hud-bg);
+    border-bottom: 1px solid var(--hud-border);
+    color: var(--text);
+}
+
+header.hud-header {
+    top: 0;
+    height: var(--height-header);
+    padding-top: calc(env(safe-area-inset-top) + 10px);
+    padding-bottom: 10px;
+    position: fixed;
+    left: 0;
+}
+
+footer.hud-footer {
+    bottom: 0;
+    height: var(--height-footer);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+    padding-top: 10px;
+    position: fixed;
+    left: 0;
+    border-top: 1px solid var(--hud-border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.brand .logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent1), #5b9bd5);
+}
+
+nav.hud-nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 14px;
+}
+
+nav.hud-nav a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+nav.hud-nav a:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    background-color: var(--accent2);
+}
+
+.btn:hover {
+    color: black;
+    background-color: var(--accent1);
+}
+
+.footer-left,
+.footer-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+}
+
+/* hud ends here */
