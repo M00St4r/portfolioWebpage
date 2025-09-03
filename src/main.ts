@@ -235,7 +235,7 @@ camera.translateZ(-5);
 
 //#region Mouse Controls
 let mousePosX: number = 0;
-let mousePosY: number = 0;
+//let mousePosY: number = 0;
 let isMouseDown: boolean = false;
 let snapping = false;
 let targetTheta = 0;
@@ -245,7 +245,7 @@ let canvas: HTMLCanvasElement = document.getElementById("app") as HTMLCanvasElem
 canvas.addEventListener("mousedown", (_ev) => {
   isMouseDown = true;
   mousePosX = _ev.clientX / canvas.clientWidth;
-  mousePosY = _ev.clientY / canvas.clientHeight;
+  //mousePosY = _ev.clientY / canvas.clientHeight;
   //console.log("mouse Down on canvas");
 });
 
@@ -293,11 +293,14 @@ canvas.addEventListener("mousemove", (_ev) => {
     theta += xDiff * Math.PI; // horizontal rotation
     //phi -= yDiff * Math.PI;       // vertical rotation
 
-    // Clamp phi so you don’t flip over the poles
     //phi = Math.max(0.1, Math.min(Math.PI - 0.1, phi));
 
     mousePosX = _ev.clientX / canvas.clientWidth;
     //mousePosY = _ev.clientY / canvas.clientHeight;
+
+    // update the project selector to show the correct project
+    projectSelector = angleToSelector(theta, Math.PI / 4);
+    updateProjectPreview(theta);
   }
 });
 
@@ -332,6 +335,10 @@ canvas.addEventListener("touchmove", (ev) => {
     let xDiff = currentX - touchStartX;
     theta += xDiff * Math.PI; // same as mouse
     touchStartX = currentX;
+
+    // update the project selector to show the correct project
+    projectSelector = angleToSelector(theta, Math.PI / 4);
+    updateProjectPreview(theta);
   }
 });
 
@@ -348,23 +355,23 @@ canvas.addEventListener("touchend", () => {
 //#endregion
 
 //#region Environment Texture
-// let exrBackground: THREE.Texture;
+let exrBackground: THREE.Texture;
 
-// new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
+new EXRLoader().load('/resources/kloofendal_48d_partly_cloudy_puresky_2k.exr', function (texture) {
 
-//   texture.mapping = THREE.EquirectangularReflectionMapping;
+  texture.mapping = THREE.EquirectangularReflectionMapping;
 
-//   //exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
-//   exrBackground = texture;
+  //exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
+  exrBackground = texture;
 
-// });
+});
 
 //
 
 function animate() {
   //scene.getObjectById
   updateCamera();
-  //scene.background = exrBackground;
+  scene.background = exrBackground;
   renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
