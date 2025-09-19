@@ -62,7 +62,7 @@ const name: HTMLSpanElement = document.querySelector("#name")!;
 const bio: HTMLDivElement = document.querySelector("#bio")!;
 const closeBioButton: HTMLButtonElement = document.querySelector("#close-bio")!;
 
-let isBio: boolean = false;
+let isBio: boolean = true;
 bio.style.display = "flex";
 
 brand.addEventListener("mouseenter", (_ev) => {
