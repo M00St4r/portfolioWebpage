@@ -181,7 +181,7 @@ html {
 
 /* Track (background area) */
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.00);
+    background: rgba(0, 0, 0, 0.00);
     border-radius: 4px;
 }
 
@@ -201,7 +201,7 @@ html {
 /* Firefox Narrow scrollbar */
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--accent1) rgba(255, 255, 255, 0.05);
+    scrollbar-color: var(--accent1) rgba(0, 0, 0, 0.0);
 }
 
 /* Scroll bar End*/

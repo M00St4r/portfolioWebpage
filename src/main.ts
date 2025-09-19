@@ -1,14 +1,12 @@
-
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 //import { previewSnippets } from './projects.ts';
 //import { projectSnippets } from './projects.ts';
 
-
 //#region HTML Stuff
 //html "windows"
-const startScreen: HTMLDivElement = document.querySelector("#start-screen")!;
+//const startScreen: HTMLDivElement = document.querySelector("#start-screen")!;
 const contactWindow: HTMLDivElement = document.querySelector("#contact")!;
 //html buttons
 const contactButton: HTMLButtonElement = document.querySelector("#contact-button")!;
@@ -16,9 +14,9 @@ const closeContactButton: HTMLButtonElement = document.querySelector("#close-con
 const emailButton: HTMLParagraphElement = document.querySelector("#email")!;
 
 //make start screen disapear when clicked
-startScreen.addEventListener("click", (_ev) => {
-  startScreen.style.display = "none";
-});
+// startScreen.addEventListener("click", (_ev) => {
+//   startScreen.style.display = "none";
+// });
 //contact window
 let isContact: boolean = false;
 contactWindow.style.display = "none";
@@ -58,7 +56,6 @@ emailButton.addEventListener("click", async (_ev) => {
   await setInterval(() => emailButton.innerText = "bjoern.martens@posteo.de", 2000);
 });
 
-
 //Bio
 const brand: HTMLSpanElement = document.querySelector("#brand")!;
 const name: HTMLSpanElement = document.querySelector("#name")!;
@@ -66,7 +63,7 @@ const bio: HTMLDivElement = document.querySelector("#bio")!;
 const closeBioButton: HTMLButtonElement = document.querySelector("#close-bio")!;
 
 let isBio: boolean = false;
-bio.style.display = "none";
+bio.style.display = "flex";
 
 brand.addEventListener("mouseenter", (_ev) => {
   name.innerText = "Get to know me!";
