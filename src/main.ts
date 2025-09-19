@@ -230,6 +230,15 @@ scene.add(dlLight.target);
 
 camera.translateZ(-5);
 
+window.onresize = function () {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+};
+
 //#region Mouse Controls
 let mousePosX: number = 0;
 //let mousePosY: number = 0;
